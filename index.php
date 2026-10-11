@@ -42,7 +42,7 @@ if (isset($_GET['edit'])) {
     $stmt->close();
 }
 
-$result = $conn->query("SELECT * FROM users ORDER BY id DESC");
+$result = $conn->query("SELECT * FROM users ORDER BY id ASC");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -97,9 +97,9 @@ $result = $conn->query("SELECT * FROM users ORDER BY id DESC");
                         <?php if ($result->num_rows === 0): ?>
                         <tr><td colspan="5" class="text-center text-muted">No data found</td></tr>
                         <?php else: ?>
-                        <?php while ($row = $result->fetch_assoc()): ?>
+                        <?php $i = 1; while ($row = $result->fetch_assoc()): ?>
                         <tr>
-                            <td><?= $row['id'] ?></td>
+                            <td><?= $i++ ?></td>
                             <td><?= htmlspecialchars($row['name']) ?></td>
                             <td><?= htmlspecialchars($row['email']) ?></td>
                             <td><?= date('M d, Y', strtotime($row['created_at'])) ?></td>
